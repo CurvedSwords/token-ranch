@@ -8,10 +8,10 @@ from os import listdir
 import random
 import logging
 
+auto.FAILSAFE = False
 
 def move(pos, duration=0.8, tween=auto.easeInOutBack):
     auto.moveTo(pos[0], pos[1], duration, tween)
-
 
 def find_onscreen(path, precision=0.8):
     return search(path, 0, 0, 2560, 1440, precision=precision)
@@ -70,7 +70,7 @@ def wait_for_end():
 
 
 def play_match():
-    # sleep(40)
+    # sleep(59)
     while True:
         match_end = find_onscreen("./captures/exit_now.png")
         if match_end[0] != -1:
@@ -115,7 +115,7 @@ def buy_random():
         else:
             trait = traits[random.randrange(len(traits))]
     direct.press('d')
-    direct.press('e')
+    direct.press('f')
 
 
 def queue():
@@ -126,10 +126,8 @@ def queue():
 
 logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s', level=logging.INFO, datefmt='%Y-%m-%d %H:%M:%S')
 
-match_count = 0
+match_count = 0 
 while True:
     queue()
     match_count += 1
     logging.info(f"Current match count: {match_count}")
-
-
